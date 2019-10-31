@@ -4,7 +4,22 @@ option csharp_namespace = "GrpcService.Protos";
 
 // The student service definition.
 service RemoteStudent {
-  rpc GetStudentInfo (StudentLookupModel) returns (StudentModel);
+	rpc GetStudentInfo (StudentLookupModel) returns (StudentModel);
+	rpc InsertStudent (StudentModel) returns (Reply);
+	rpc UpdateStudent (StudentModel) returns (Reply);
+	rpc DeleteStudent (StudentLookupModel) returns (Reply);
+	rpc RetrieveAllStudents (Empty) returns (StudentList);
+}
+
+message Empty {}
+
+message StudentList {
+   repeated StudentModel items = 1;
+}
+
+message Reply {
+	string result = 1;
+	bool isOk = 2;
 }
 
 // The request message 
